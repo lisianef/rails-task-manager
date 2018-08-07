@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+  <title>All the tasks</title>
+</head>
+<body>
+  <h1>All the tasks</h1>
+
+  <% @tasks.each do |task| %>
+  <div class="task">
+     <p><i class="<%= task.completed ? "far fa-check-square" : "far fa-square"%>"></i>  <%= link_to "#{task.title}", task_path(task)%></p>
+      <div class="action">
+       <p><%= link_to "Edit", edit_task_path(task)%></p>
+       <p><%= link_to "Delete", task_path(task),
+        method: :delete,
+        data: { confirm: "Are you sure?" }%></p>
+      </div>
+  </div>
+    <% end %>
+  <p><%= link_to "+ Add a new task", new_task_path%></p>
+  </body>
+</html>
